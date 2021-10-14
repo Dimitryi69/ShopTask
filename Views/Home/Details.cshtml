@@ -1,0 +1,51 @@
+﻿@model Product
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h3>Shop</h3>
+<dl>
+    <dt>Name</dt>
+    <dd id="ShopName"></dd>
+    <dt>Adress</dt>
+    <dd id="ShopAdress"></dd>
+    <dt>Work Time</dt>
+    <dd id="ShopTime"></dd>
+</dl>
+<h3 class="mt-5">Products</h3>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Name
+            </th>
+            <th>
+                Description
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody id="shops"></tbody>
+</table>
+
+<h3>Add new Product</h3>
+@using (Html.BeginForm("Add", "Home", FormMethod.Post))
+{
+    <input id="Product_ShopId" name="ShopId" type="text" value=@ViewBag.shopId hidden>
+
+    @Html.LabelFor(m => m.Name, "Product Name")
+    <br />
+    @Html.TextBoxFor(m => m.Name)
+    <br />
+    @Html.LabelFor(m => m.Description, "Product description")
+    <br />
+    @Html.TextBoxFor(m => m.Description)
+    <br />
+    <p class="mt-2"><input type="submit" value="Add" class="btn btn-primary" /></p>
+}
+
+<script src="~/js/products.js" asp-append-version="true"></script>
+<script type="text/javascript">
+    getItemsDetails(@ViewBag.shopId);
+</script>

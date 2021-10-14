@@ -1,0 +1,27 @@
+﻿@model IEnumerable<Shop>
+
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Adress)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.WorkHours)
+            </th>
+            <th></th>
+        </tr>
+    <thead>
+    <tbody id="shops"></tbody>
+</table>
+<script src="~/js/site.js" asp-append-version="true"></script>
+<script type="text/javascript">
+    getItems();
+</script>
