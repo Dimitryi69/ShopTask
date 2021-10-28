@@ -36,7 +36,7 @@ namespace TestTask.Controllers
         async public Task<IActionResult> Add([FromForm]Product product)
         {
             var baseUrl = $"{Request.Scheme}://{Request.Host}/api/product";
-            var request = new HttpRequestMessage(HttpMethod.Put,
+            var request = new HttpRequestMessage(HttpMethod.Post,
             baseUrl);
             request.Headers.Add("Accept", "application/json");
             request.Headers.Add("User-Agent", "HttpClientFactory-Sample");
@@ -48,7 +48,7 @@ namespace TestTask.Controllers
             {
                 return RedirectToAction("Details", "Home", new { id = product.ShopId });
             }
-            return View("Index");
+            return RedirectToAction("Index", "Home");
         }
 
         async public Task<IActionResult> Edit(int id)
@@ -68,7 +68,7 @@ namespace TestTask.Controllers
                 string responseBody = await response.Content.ReadAsStringAsync();
                 return View(JsonConvert.DeserializeObject<Product>(responseBody));
             }
-            return View("Index");
+            return RedirectToAction("Index", "Home");
         }
 
         [HttpPost]
@@ -89,7 +89,7 @@ namespace TestTask.Controllers
             {
                 return RedirectToAction("Details", "Home", new { id = product.ShopId });
             }
-            return View("Index");
+            return RedirectToAction("Index", "Home");
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

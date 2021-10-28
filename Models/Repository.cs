@@ -16,11 +16,13 @@ namespace TestTask.Models
         public void CreateProduct(Product product)
         {
             _context.Products.Add(product);
+            _context.SaveChanges();
         }
 
         public void CreateShop(Shop shop)
         {
             _context.Shops.Add(shop);
+            _context.SaveChanges();
         }
 
         public void DeleteProduct(int id)
